@@ -15,8 +15,9 @@ api_key = os.getenv('OPENAI_API_KEY')
 
 client = OpenAI(api_key=api_key, organization="org-cly0EyGAP6X8i6pFqGqL5bN0")
 
-recipient = 'Godfrey'
+recipient = 'Bae'
 recipient_number = '+61493969310'
+talking_style="You are talking to with your girlfriend, and just reply a single sentence each time"
 
 # Initialize the Chrome driver
 driver = webdriver.Chrome()  # or specify the path: webdriver.Chrome(executable_path='/path/to/chromedriver')
@@ -58,7 +59,7 @@ original_messages = get_messages(recipient)
 
 #ChatGPT Prompt messages
 chat_messages = [
-                    {"role": "system", "content": "You are a smart kid who like answering question and just reply a single line sentence each time"},
+                    {"role": "system", "content": talking_style},
                 ]
 
 while True:
