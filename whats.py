@@ -56,6 +56,10 @@ def get_messages(chat_name):
 # Example usage: Retrieve messages from a chat named 
 original_messages = get_messages(recipient)
 
+#ChatGPT Prompt messages
+chat_messages = [
+                    {"role": "system", "content": "You are a smart kid who like answering question and just reply a single line sentence each time"},
+                ]
 
 while True:
     time.sleep(5)
@@ -65,16 +69,19 @@ while True:
     if current_messages and current_messages[-1] != original_messages[-1]:
         if current_messages[-1] != response.choices[0].message.content:
             # Generate Message from ChatGPT
+            print(current_messages[-1])
+            chat_messages.append({"role": "user", "content": current_messages[-1]})
+            print(chat_messages)
             response = client.chat.completions.create(
                 model="gpt-3.5-turbo",
-                messages=[
-                    {"role": "system", "content": "You are talking with a girl you like, you can be a bit flirty as well"},
-                    {"role": "user", "content": current_messages[-1]},
-                ]
+                messages=chat_messages
             )
+            print(response)
+            chat_messages.append({"role": "assistant", "content": response.choices[0].message.content})
             # Send the response
             message_box = driver.find_element(By.XPATH, '//div[@contenteditable="true"][@class="x1hx0egp x6ikm8r x1odjw0f x1k6rcq7 x6prxxf"]')
             message_box.click()
+            print(response.choices[0].message.content)
             message_box.send_keys(response.choices[0].message.content)
             message_box.send_keys(Keys.ENTER)
               
