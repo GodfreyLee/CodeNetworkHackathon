@@ -15,8 +15,7 @@ api_key = os.getenv('OPENAI_API_KEY')
 
 client = OpenAI(api_key=api_key, organization="org-cly0EyGAP6X8i6pFqGqL5bN0")
 
-recipient = 'Bae'
-recipient_number = '+61493969310'
+recipient = 'QUT Tsuki'
 talking_style="You are talking to with your girlfriend, and just reply a single sentence each time"
 
 # Initialize the Chrome driver
